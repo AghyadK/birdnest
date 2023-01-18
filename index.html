@@ -1,2 +1,30 @@
-<script src="//cdnjs.cloudflare.com/ajax/libs/ramda/0.25.0/ramda.min.js"></script>
-Hi
+<html>
+<head>
+<script src="//cdn.jsdelivr.net/npm/ramda@0.25/dist/ramda.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/bluebird@3.7.2/js/browser/bluebird.js"></script>
+<script src="/birdnest.js"></script>
+</head>
+<body>
+
+<h1>Birdnest</h1>
+<div>
+  <h2 id="label">Closest distance so far: Infinity m</h2>
+</div>
+<div>
+  <h2>Violators in the last 10 minutes</h2>
+</div>
+<table>
+	<thead>
+		<tr>
+			<th>FirstName</th>
+			<th>Last Name</th>
+			<th>Phone Number</th>
+			<th>Email</th>
+			<th>Last Seen</th>
+		</tr>
+	</thead>
+		<tbody id="table-body">
+	</tbody>
+</table> 
+</body>
+</html> 
