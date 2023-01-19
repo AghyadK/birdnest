@@ -77,10 +77,14 @@ const populateView = () => {
 	oldBody.parentNode.replaceChild(newBody, oldBody)
 }
 
-const loop = () => queryDrones()
+const loop = () => Promise(queryDrones())
+	.tap(console.log)
 	.then(extractDrones)
+	.tap(console.log)
 	.then(handleDrones)
+	.tap(console.log)
 	.then(drones => Promise.map(queryOwner))
+	.tap(console.log)
 	.then(updateViolators)
 	.then(populateView)
 
