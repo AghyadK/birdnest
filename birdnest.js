@@ -19,7 +19,9 @@ const DRONES_URL = 'https://assignments.reaktor.com/birdnest/drones'
 const parseXML = str => xmlParser.parseFromString(str, 'text/xml')
 const ownerURL = droneId => R.concat(OWNER_URL_BASE, droneId)
 const distance = ({x, y}) => Math.hypot(x - ox, y - oy)
-const queryDrones = () => fetch(DRONES_URL).then(r => parseXML(r.text()))
+const queryDrones = () =>
+	fetch(DRONES_URL, {mode: 'cors'})
+	.then(r => parseXML(r.text()))
 
 const DRONE_DATA = ['serialNumber', 'positionY', 'positionX']
 const OWNER_PROPS = ['firstName', 'lastName','phoneNumber', 'email', 'seen']
@@ -46,7 +48,8 @@ const handleDrones = drones => {
 	return R.filter(R.lte(withinNDZ))
 }
 
-const queryOwner = drone => fetch(ownerURL(R.prop('droneId', drone)))
+const queryOwner = drone => 
+	fetch(ownerURL(R.prop('droneId', drone)), {mode: 'cors'})
 	.then(r => r.json())
 	.catch(_ => ({}))
 	.then(owner => ownerProject(R.mergeLeft(drone, owner)))
